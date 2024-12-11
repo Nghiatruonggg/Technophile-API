@@ -1,9 +1,22 @@
-const mongoose = require('mongoose');
 const mobileModel = require('../models/mobileModel');
+const APIMethod = require('../utils/APIMethod');
+
+exports.addParams = async (req, res, next) => {
+  req.query.limit = '5';
+  req.query.sort = '-rating_numbers,price';
+  next();
+}
 
 exports.getAllProduct = async (req, res) => {
   try {
-    const mobileData = await mobileModel.find();
+    const features = new APIMethod(mobileModel.find(), req.query)
+      .filter()
+      .limitFields()
+      .sort()
+      .page();
+
+    const mobileData = await features.query;
+
     res.status(200).json({
       status: 'success',
       data: {

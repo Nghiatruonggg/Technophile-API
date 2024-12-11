@@ -31,12 +31,13 @@ const deleteData = async () => {
   } catch (error) {
     console.error(error);
   }
+  process.exit();
 };
 
-if (process.argv[2] == '--import') {
+if (process.argv[2] === '--import') {
     importData();
 }
 
-if (process.argv[2] == '--delete') {
+if (process.argv[2] === '--delete') {
     deleteData();
 }

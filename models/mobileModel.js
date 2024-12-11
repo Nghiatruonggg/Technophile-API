@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
 
 const mobileSchema = new Schema({
@@ -115,7 +116,7 @@ const mobileSchema = new Schema({
   battery_size: {
     type: String,
   },
-});
+}, {timestamps: true});
 
 const mobileModel = mongoose.model('mobileModel', mobileSchema);
 
